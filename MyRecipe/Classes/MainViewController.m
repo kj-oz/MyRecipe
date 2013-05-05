@@ -109,6 +109,20 @@
     return [super webViewDidFinishLoad:theWebView];
 }
 
+- (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *url = [request URL];
+    if (!url.isFileURL)
+    {
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+            return NO;
+        }
+    }
+    
+    return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
+}
+
 /* Comment out the block below to over-ride */
 
 /*
