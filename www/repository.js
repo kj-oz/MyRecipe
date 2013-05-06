@@ -469,17 +469,20 @@ KOJS.recipe.model.Repository = (function () {
       var self = this, 
           id = recipe._id, index;
 
+      logger.log("> repository.remove start: " + id);
       if (id.match(/^LOC/)) {
         var deferred = $.Deferred();
-        delete this._recipes[id];
-        this.saveRecipes();
+        delete self._recipes[id];
+        self.saveRecipes();
         deferred.resolve();
         return deferred.promise();
       } else {
         recipe.deleted = true;
         recipe.dirty = true;
         return self._dao.authenticate().then(function () {
+          logger.log("> repository.remove / authenticate done: " + id);
           return self._dao.postRecipe(recipe).then(function () {
+            logger.log("> repository.remove / postRecipe done: " + id);
             delete self._recipes[id];
           }).always(function () {
             self.saveRecipes();

@@ -37,6 +37,9 @@ $(document).ready(function() {
 
     // 編集ページで編集中のレシピ
     editingRecipe: undefined,
+    
+    // コミット中かどうか
+    commiting: false,
 
     /**
      * cp 及び ma を呼び出すサーバーのアドレスを得る.
@@ -188,22 +191,26 @@ $(document).ready(function() {
           self = this,
           editing = !(!recipe._id);
 
-      logger.log("before update.");
-      $.mobile.showPageLoadingMsg();
-      this.repository.update(recipe).always(function () {
-        var index;
-        logger.log("update always.");
-        if (editing) {
-          index = self.selection.indexOf(self.currentRecipe);
-          self.selection[index] = recipe;
-          self.currentRecipe = recipe;
-        } else if (context.selection.length < 6) {
-          self.selection.push(recipe);
-          self.currentRecipe = recipe;
-        }
-        $.mobile.hidePageLoadingMsg();
-        self.endEditing();
-      });
+      if (!this.commiting) {
+        logger.log("before update.");
+        this.commiting = true;
+        $.mobile.showPageLoadingMsg();
+        this.repository.update(recipe).always(function () {
+          var index;
+          logger.log("update always.");
+          if (editing) {
+            index = self.selection.indexOf(self.currentRecipe);
+            self.selection[index] = recipe;
+            self.currentRecipe = recipe;
+          } else if (context.selection.length < 6) {
+            self.selection.push(recipe);
+            self.currentRecipe = recipe;
+          }
+          this.commiting = false;
+          $.mobile.hidePageLoadingMsg();
+          self.endEditing();
+        });
+      }
     },
 
     /**
@@ -224,6 +231,7 @@ $(document).ready(function() {
       var self = this;
 
       this.repository.remove(recipe).always(function () {
+        logger.log("> repository.remove always: " + recipe._id);
         var index;
         if (recipe === self.currentRecipe) {
           self.currentRecipe = undefined;

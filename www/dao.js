@@ -74,6 +74,11 @@ KOJS.recipe.model.Dao = (function () {
     authenticate: function () {
       var deferred = $.Deferred(),
           self = this;
+          
+      if (self._client.isAuthenticated()) {
+        deferred.resolve();
+        return deferred.promise();
+      }
       logger.log("- authenticate start.");
       self._client.authenticate(function (error, client) {
         if (error) {
@@ -180,6 +185,9 @@ KOJS.recipe.model.Dao = (function () {
           dicts = [],
           self = this;
           
+      if (!self._client.isAuthenticated()) {
+        logger.log("** isnot authenticated!!")
+      }
       self._client.readdir("/dictionary", function (error, names, dirStat, stats) {
         var i, n,
             job,

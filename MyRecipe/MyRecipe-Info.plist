@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
+	<key>CFBundleIconFile</key>
+	<string></string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>MyRecipe/Resouces/icon.png</string>
-		<string>MyRecipe/Resouces/icon@2x.png</string>
 		<string>icon.png</string>
 		<string>icon@2x.png</string>
 	</array>
@@ -23,8 +23,6 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>MyRecipe/Resouces/icon.png</string>
-				<string>MyRecipe/Resouces/icon@2x.png</string>
 				<string>icon.png</string>
 				<string>icon@2x.png</string>
 			</array>
@@ -41,11 +39,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.2</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

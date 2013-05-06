@@ -35,6 +35,8 @@
 		31775234172831C1004E30D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31775232172831C1004E30D8 /* InfoPlist.strings */; };
 		31775237172831D2004E30D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 31775235172831D2004E30D8 /* InfoPlist.strings */; };
 		3177523A172832AC004E30D8 /* MyRecipe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 31775239172832AC004E30D8 /* MyRecipe-Info.plist */; };
+		318CA37E1737E05000604E41 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 318CA37D1737E05000604E41 /* icon.png */; };
+		318CA3801737E05A00604E41 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 318CA37F1737E05A00604E41 /* icon@2x.png */; };
 		31E840061707ECFA00C1B10E /* IdleTimerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E840051707ECFA00C1B10E /* IdleTimerPlugin.m */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
@@ -90,6 +92,8 @@
 		31775236172831D2004E30D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		3177523817283247004E30D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		31775239172832AC004E30D8 /* MyRecipe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MyRecipe-Info.plist"; path = "MyRecipe/MyRecipe-Info.plist"; sourceTree = SOURCE_ROOT; };
+		318CA37D1737E05000604E41 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		318CA37F1737E05A00604E41 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		31E840041707ECFA00C1B10E /* IdleTimerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdleTimerPlugin.h; sourceTree = "<group>"; };
 		31E840051707ECFA00C1B10E /* IdleTimerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdleTimerPlugin.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MyRecipe-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyRecipe-Prefix.pch"; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				318CA37F1737E05A00604E41 /* icon@2x.png */,
+				318CA37D1737E05000604E41 /* icon.png */,
 				311FE552172BB0C0009EE04E /* www */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
@@ -346,6 +352,8 @@
 				311FE562172BB494009EE04E /* icon@2x.png in Resources */,
 				311FE566172BB4A7009EE04E /* Default-Landscape@2x~ipad.png in Resources */,
 				311FE567172BB4A7009EE04E /* Default-Landscape~ipad.png in Resources */,
+				318CA37E1737E05000604E41 /* icon.png in Resources */,
+				318CA3801737E05A00604E41 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

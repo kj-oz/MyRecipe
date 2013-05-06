@@ -27,7 +27,8 @@ KOJS.recipe.page.ListPage = (function () {
         return;
       }
       
-      var self = this;
+      var self = this,
+          logger = KOJS.util.Logger.get();
       
       // 一覧ページの初回表示時のイベントの定義
       $("#list-page").on("pagebeforecreate", function (event) {
@@ -102,9 +103,13 @@ KOJS.recipe.page.ListPage = (function () {
           if (confirm("選択されているレシピを全て削除します。\nよろしいですか？")) {
             while (context.selection.length) {
               recipe = context.selection.pop();
+              logger.log("> remove start: " + recipe.title);
               context.removeRecipe(recipe);
+              logger.log("> remove recipe.deleted: " + recipe.deleted);
             }
+            logger.log("> remove done");
             context.saveSelection();
+            logger.log("> refresh list");
             self._filterList(true);
             self._updateSelection(true);            
           }
