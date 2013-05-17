@@ -71,11 +71,19 @@ KOJS.recipe.page.ListPage = (function () {
           self._updateList(true);
         });
         $("#ls-listpos").on("tap", function(e) {
-          var nPage = Math.floor(self._recipes.length / self._nRecipePerPage);
-          if (self._recipes.length % self._nRecipePerPage === 0 && nPage > 0) {
-            nPage--;
+          var borderX = e.target.clientWidth / 3,
+              x, nPage;
+          x = e.clientX - e.target.offsetLeft;
+          console.log(x + ":" + Math.floor(borderX));    
+          if (x < borderX) {
+            self._recipeIndex = 0;
+          } else {
+            nPage = Math.floor(self._recipes.length / self._nRecipePerPage);
+            if (self._recipes.length % self._nRecipePerPage === 0 && nPage > 0) {
+              nPage--;
+            }
+            self._recipeIndex = nPage * self._nRecipePerPage;
           }
-          self._recipeIndex = nPage * self._nRecipePerPage;
           self._updateList(true);
         });
         $("#ls-listnext").on("tap", function(e) {
@@ -110,7 +118,7 @@ KOJS.recipe.page.ListPage = (function () {
             logger.log("> remove done");
             context.saveSelection();
             logger.log("> refresh list");
-            self._filterList(true);
+            self._filterList(true, true);
             self._updateSelection(true);            
           }
         });
@@ -194,7 +202,7 @@ KOJS.recipe.page.ListPage = (function () {
         // 抽出条件の初期化（"refresh"が構築前はエラーになるため、こちらで設定）
         self._initCondition();
 
-        self._filterList(true);
+        self._filterList(true, true);
         self._updateSelection(true);
       });
       
@@ -229,11 +237,14 @@ KOJS.recipe.page.ListPage = (function () {
        * 全レシピから条件に合致するレシピを抽出しレシピ一覧の内容を更新する
        * 
        * @param {Boolean} refresh DOM更新後にウィジェットの更新を行うかどうか
+       * @param {Boolean} keepPage 表示中のページを維持するか
        */
-      this._filterList = function (refresh) {
+      this._filterList = function (refresh, keepPage) {
         var changed = context.repository.mergeUpdates();
         this._recipes = context.repository.filter(context.condition);
-        this._recipeIndex = 0;
+        if (!keepPage) {
+          this._recipeIndex = 0;          
+        }
         this._updateList(refresh);
         if (changed) {
           this._updateSelection(refresh);
@@ -270,10 +281,8 @@ KOJS.recipe.page.ListPage = (function () {
         }
         if (this._recipeIndex + n === this._recipes.length) {
           $("#ls-listnext").addClass("ui-disabled");
-          $("#ls-listpos").addClass("ui-disabled");
         } else {
           $("#ls-listnext").removeClass("ui-disabled");
-          $("#ls-listpos").removeClass("ui-disabled");
         }
         if (this._recipes.length === 0) {
           $("#ls-listpos").text("0 ／ 0");

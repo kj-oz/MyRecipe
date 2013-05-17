@@ -206,7 +206,7 @@ $(document).ready(function() {
             self.selection.push(recipe);
             self.currentRecipe = recipe;
           }
-          this.commiting = false;
+          self.commiting = false;
           $.mobile.hidePageLoadingMsg();
           self.endEditing();
         });
@@ -316,7 +316,7 @@ $(document).ready(function() {
       var count = context.repository.getCount();
       logger.log("* local recipe count = " + count);
       if (count === 0) {
-        jobSync.done(function () {
+        jobSync.always(function () {
           logger.log("* jobSync done");
           $.mobile.changePage(context.currentPage, {changeHash: false});
         });

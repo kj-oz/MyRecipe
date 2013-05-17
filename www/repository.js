@@ -533,7 +533,7 @@ KOJS.recipe.model.Repository = (function () {
           return b.lastupdate - a.lastupdate;
         });
       }
-     return filteredRecipes;
+      return filteredRecipes;
     },
 
     /**
