@@ -11,7 +11,7 @@ MyRecipeは、料理のレシピを個人的に登録、閲覧するためのPho
 　[https://itunes.apple.com/us/app/reshipi-zhang/id641147266?l=ja&ls=1&mt=8][AppStore]
 
 また、同じアプリをWebアプリとして以下のアドレスで配信していますので、すぐにブラウザでお試しいただけます。
-（ただし、2013/05/18現在、動作確認済みのブラウザはMac上のサファリ、Chromeのみになります）
+（ただし、2013/05/18現在、IE、Firefoxでは正常に動作しませんのでご注意ください）
 　[http://recipenote.herokuapp.com/recipenote.html][Heroku]
 
 画面イメージや使い方は、以下のページをご覧下さい。  
@@ -56,10 +56,11 @@ iOS 5.1以上、iPad専用
 
 **Web版** （2013/05/18時点で動作確認済みのもの）
 
-Mac版Safari（6.0.3）
-
-Mac版Chrome（26.0.1410.65）
-
+* Mac
+ Safari（6.0.3）
+ Chrome（26.0.1410.65）
+* Windows
+ Chrome（26.0.1410.64m）
 
 ライセンス
 -----
