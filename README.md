@@ -56,11 +56,12 @@ iOS 5.1以上、iPad専用
 
 **Web版** （2013/05/18時点で動作確認済みのもの）
 
-* Mac
- Safari（6.0.3）
- Chrome（26.0.1410.65）
-* Windows
- Chrome（26.0.1410.64m）
+Mac
+* Safari（6.0.3）
+* Chrome（26.0.1410.65）
+
+Windows
+* Chrome（26.0.1410.64m）
 
 ライセンス
 -----
