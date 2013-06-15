@@ -3,12 +3,14 @@
   padding: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 .ui-btn-corner-all {
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
+  -ms-border-radius: 0.4em;
   border-radius: 0.4em;
 }
 
@@ -46,19 +48,22 @@ p, td {
 #dt-navbar {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
 }
 
 #dt-navbar-title {
   width: 160px;
   -webkit-box-flex: 1.0;
-  -mox-box-flex: 1.0;
+  -moz-box-flex: 1.0;
+  -ms-box-flex: 1.0;
   box-flex: 1.0;
 }
 
 #dt-navbar-recipes {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
   text-align: center;
   list-style: none;
@@ -67,7 +72,7 @@ p, td {
 }
 
 #dt-navbar-recipes div {
-  width: 160px;
+  width: 157px;
   padding: 0 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -78,11 +83,14 @@ p, td {
 #dt-navbar-recipes .selected {
   /*background: -webkit-linear-gradient(top, #c95570 0%,#c54b67 44%,#bf3b5a 100%);*/
   background: -webkit-linear-gradient(top, #ffa121 0%,#f7931e 44%,#de841b 100%);
+  background: -moz-linear-gradient(top, #ffa121 0%,#f7931e 44%,#de841b 100%);
+  background: -ms-linear-gradient(top, #ffa121 0%,#f7931e 44%,#de841b 100%);
 }
 
 #dt-content-header {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
   margin: 0 20px;
   padding: 10px 0;
@@ -92,7 +100,8 @@ p, td {
 
 #dt-content-header-left {
   -webkit-box-flex: 1.0;
-  -mox-box-flex: 1.0;
+  -moz-box-flex: 1.0;
+  -ms-box-flex: 1.0;
   box-flex: 1.0;
   font-size: 0.8em;
 }
@@ -118,6 +127,7 @@ p, td {
 #dt-content {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
   height: 606px;
   width: 1024px;
@@ -222,25 +232,30 @@ p, td {
 #ls-listcontrol {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
 }
 
 #ls-listpos {
   -webkit-box-flex: 1.0;
-  -mox-box-flex: 1.0;
+  -moz-box-flex: 1.0;
+  -ms-box-flex: 1.0;
   box-flex: 1.0;
   -webkit-box-pack: center;
-  -mox-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
   box-pack: center;  
   -webkit-box-align: center;
-  -mox-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
   box-align: center;
   padding-top: 9px;
 }
 
 #ls-listnext {
   -webkit-box-pack: right;
-  -mox-box-pack: right;
+  -moz-box-pack: right;
+  -ms-box-pack: right;
   box-pack: right;  
 }
 
@@ -272,6 +287,7 @@ p, td {
 #ed-content {
   display: -webkit-box;
   display: -moz-box;
+  display: -ms-box;
   display: box;
 }
 

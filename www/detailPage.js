@@ -56,7 +56,7 @@ KOJS.recipe.page.DetailPage = (function () {
         var html, 
             currentRecipeIndex;
             
-        plugins.idleTimer.disable();
+        plugins.idleTimer.disable(1);
 
         context.setCurrentPage("#detail-page");
 

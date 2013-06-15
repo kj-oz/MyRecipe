@@ -74,7 +74,9 @@ KOJS.recipe.page.EditPage = (function () {
           $row = $button.closest("tr");
           rowIndex = $("#ed-ingredients-table tr").index($row);
           if ($button.hasClass("btn-remove")) {
-            $row.remove();
+            if ($("#ed-ingredients-table tr").length > 1) {
+              $row.remove();            
+            }
           } else {
             $row.before(SNBinder.bind(context.templates["ed-ingredients"], emptyIngredient));
             $row = $("#ed-ingredients-table tr:eq(" + rowIndex + ")");
@@ -116,7 +118,9 @@ KOJS.recipe.page.EditPage = (function () {
           $row = $button.closest("tr");
           rowIndex = $("#ed-steps-table tr").index($row);
           if ($button.hasClass("btn-remove")) {
-            $row.remove();
+            if ($("#ed-steps-table tr").length > 1) {
+              $row.remove();              
+            }
           } else {
             $row = $row.before(SNBinder.bind(context.templates["ed-steps"], emptyStep));
             $row = $("#ed-steps-table tr:eq(" + rowIndex + ")");

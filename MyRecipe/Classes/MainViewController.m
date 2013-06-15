@@ -119,7 +119,6 @@
             return NO;
         }
     }
-    
     return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 

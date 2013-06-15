@@ -261,7 +261,7 @@ KOJS.recipe.model.Dao = (function () {
       
       fileName = "/recipes/" + id + ".json";
       logger.log("- postRecipe start.");
-      self._client.writeFile(fileName, JSON.stringify(postData), function (error, stat) {
+      self._client.writeFile(fileName, JSON.stringify　　　　　　　　　　　　　　　　　　　　　　　　　　　　(postData), function (error, stat) {
         if (error) {
           Dao.showError(error);
           deferred.reject(error);

@@ -31,7 +31,7 @@ KOJS.recipe.model.Recipe = (function () {
       "rank": "0",
       "lastupdate": new Date().getTime()
     };
-    return $.extend(json, this);
+    return $.extend(json, this, {"random": Math.random()});
   };
   
   Recipe.prototype = {

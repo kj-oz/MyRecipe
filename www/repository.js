@@ -19,6 +19,7 @@ KOJS.recipe.model.Repository = (function () {
     logger = KOJS.util.Logger.get();
 
     // 全レシピのマップ（キーはレシピ名）
+    this._newRecipeCount = 0;
     this._recipes = {};
     this._serverPath = serverPath;
     this._dao = new KOJS.recipe.model.Dao(dropboxClient);
@@ -319,6 +320,14 @@ KOJS.recipe.model.Repository = (function () {
       var self = this;
       
       logger.log("post recipe start: " + recipe.title);
+      
+      // 編集したものの更新日をセット
+      recipe.lastupdate = new Date().getTime();
+      if (!recipe._id) {
+        // 新規追加レシピのランダム値を負の値に（先頭にくるように）
+        self._newRecipeCount++;
+        recipe.random = -self._newRecipeCount;
+      }        
       return self._dao.authenticate().then(function () {
         return self._dao.postRecipe(recipe).then(function (newId) {
           logger.log("post recipe done, check id.")
@@ -515,13 +524,9 @@ KOJS.recipe.model.Repository = (function () {
       }
       
       if (condition.sort === "random") {
-        i = filteredRecipes.length;
-        while (i) {
-          j = Math.floor(Math.random() * i);
-          work = filteredRecipes[--i];
-          filteredRecipes[i] = filteredRecipes[j];
-          filteredRecipes[j] = work;
-        }
+        filteredRecipes.sort(function (a, b) {
+          return a.random - b.random;
+        });
       } else if (condition.sort === "date") {
         filteredRecipes.sort(function (a, b) {
           return b.lastupdate - a.lastupdate;
@@ -534,6 +539,20 @@ KOJS.recipe.model.Repository = (function () {
         });
       }
       return filteredRecipes;
+    },
+
+    /**
+     * 全レシピのrandomをつけ直す
+     */
+    reorderRandom: function () {
+      var id,
+          recipes = this._recipes;
+
+      for (id in recipes) {
+        if (recipes.hasOwnProperty(id)) {
+          recipes[id].random = Math.random();
+        }
+      }
     },
 
     /**

@@ -13,17 +13,18 @@
    * @param {Function(error:Object):void} errorFunc 失敗時コールバック
    */
   IdleTimer.prototype.enable = function (successFunc, errorFunc) {
-    this.setIdleTimer(successFunc, errorFunc, "enabled");
+    this.setIdleTimer(successFunc, errorFunc, "enabled", 0);
   };
 
   /**
    * アイドルタイマーを無効にする.
    * 
+   * @param {Number} period 無効化の持続時間（分数）
    * @param {Function(result:Object):void} successFunc 成功時コールバック
    * @param {Function(error:Object):void} errorFunc 失敗時コールバック
    */
-  IdleTimer.prototype.disable = function (successFunc, errorFunc) {
-    this.setIdleTimer(successFunc, errorFunc, "disabled");
+  IdleTimer.prototype.disable = function (period, successFunc, errorFunc) {
+    this.setIdleTimer(successFunc, errorFunc, "disabled", period);
   };
 
   /**
@@ -34,7 +35,7 @@
    * @param {Function(error:Object):void} errorFunc 失敗時コールバック
    */
   IdleTimer.prototype.get = function (successFunc, errorFunc) {
-    this.setIdleTimer(successFunc, errorFunc, "");
+    this.setIdleTimer(successFunc, errorFunc, "", 0);
   };
 
   /**
@@ -42,12 +43,13 @@
    * 
    * @param {Function(result:Object):void} successFunc 成功時コールバック
    * @param {Function(error:Object):void} errorFunc 失敗時コールバック
-   * @param {String} 変更後の状態 "enabled"=有効、"disabled"=無効、""=変更せずに調べるのみ
+   * @param {String} status 変更後の状態 "enabled"=有効、"disabled"=無効、""=変更せずに調べるのみ
+   * @param {Number} period 無効化の持続時間（分数）
    */
-  IdleTimer.prototype.setIdleTimer = function(successFunc, errorFunc, status) {
+  IdleTimer.prototype.setIdleTimer = function(successFunc, errorFunc, status, period) {
     if (cordova && cordova.exec) {
       console.log("idletimer " + status);
-      cordova.exec(successFunc, errorFunc, "IdleTimer", "setIdleTimer", [status]);
+      cordova.exec(successFunc, errorFunc, "IdleTimer", "setIdleTimer", [status, period]);
     }
   };
 

@@ -62,6 +62,9 @@ KOJS.recipe.page.ListPage = (function () {
         $("#ls-sort-select").on("change", function(e) {
           condition.sort = $(e.target).val();
           context.saveCondition();
+          if (condition.sort === "random") {
+            context.repository.reorderRandom();
+          }
           self._filterList(true);
         });
         
