@@ -24,17 +24,17 @@ KOJS.recipe.page.EditPage = (function () {
       $("#edit-page").on("pagebeforecreate", function (event) {
         
         // ナビゲーションのボタンイベントの定義
-        $("#ed-btn-cancel").on("tap", function (event) {
+        $("#ed-btn-cancel").on("click", function (event) {
           context.endEditing();
         });
         
-        $("#ed-btn-done").on("tap", function (event) {
+        $("#ed-btn-done").on("click", function (event) {
           var recipe = context.editingRecipe;
           self._getRecipeFromForm();
           
           if (recipe.title === "") {
             alert("タイトルを入力して下さい。");
-            return;
+           return;
           }
           if (recipe.ingredients.length == 0) {
             alert("材料を入力して下さい。");
@@ -64,7 +64,7 @@ KOJS.recipe.page.EditPage = (function () {
         });
 
         // 材料削除・挿入ボタンのイベントの定義
-        $("#ed-ingredients-table").on("tap", "button",  function (e) {
+        $("#ed-ingredients-table").on("click", "button",  function (e) {
           var $button = $(e.target), 
               rowIndex, 
               $row, 
@@ -108,7 +108,7 @@ KOJS.recipe.page.EditPage = (function () {
         });
 
         // 手順削除・挿入ボタンのイベントの定義
-        $("#ed-steps-table").on("tap", "button",  function (e) {
+        $("#ed-steps-table").on("click", "button",  function (e) {
           var $button = $(e.target), 
               rowIndex, 
               $row, 

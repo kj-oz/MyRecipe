@@ -69,11 +69,11 @@ KOJS.recipe.page.ListPage = (function () {
         });
         
         // 一覧のページ遷移
-        $("#ls-listprev").on("tap", function(e) {
+        $("#ls-listprev").on("click", function(e) {
           self._recipeIndex = Math.max(self._recipeIndex - self._nRecipePerPage, 0);
           self._updateList(true);
         });
-        $("#ls-listpos").on("tap", function(e) {
+        $("#ls-listpos").on("click", function(e) {
           var borderX = e.target.clientWidth / 3,
               x, nPage;
           x = e.clientX - e.target.offsetLeft;
@@ -89,7 +89,7 @@ KOJS.recipe.page.ListPage = (function () {
           }
           self._updateList(true);
         });
-        $("#ls-listnext").on("tap", function(e) {
+        $("#ls-listnext").on("click", function(e) {
           if (self._recipeIndex + self._nRecipePerPage < self._recipes.length) {
             self._recipeIndex = self._recipeIndex + self._nRecipePerPage;
             self._updateList(true);
@@ -97,19 +97,22 @@ KOJS.recipe.page.ListPage = (function () {
         });
         
         // 管理イベントの定義
-        $("#ls-admin-init").on("tap", function(e) {
+        $("#ls-admin-init").on("click", function(e) {
+          logger.log("> admin-init tapped");
           if (confirm("ローカルのキャッシュデータを全てクリアします。\nよろしいですか？")) {
             localStorage.clear();
             document.location = "recipenote.html"
           }
         });
         
-        $("#ls-admin-update").on("tap", function(e) {
+        $("#ls-admin-update").on("click", function(e) {
+          logger.log("> admin-update tapped");
           document.location = "recipenote.html"
         });
         
-        $("#ls-admin-remove").on("tap", function(e) {
+        $("#ls-admin-remove").on("click", function(e) {
           var recipe;
+          logger.log("> admin-remove tapped");
           
           if (confirm("選択されているレシピを全て削除します。\nよろしいですか？")) {
             while (context.selection.length) {
@@ -127,7 +130,7 @@ KOJS.recipe.page.ListPage = (function () {
         });
 
         // 条件部ヘッダーのイベントの定義
-        $("#ls-condition").on("tap", "a", function(e) {
+        $("#ls-condition").on("click", "a", function(e) {
           var $a;
 
           e.preventDefault();
@@ -142,7 +145,7 @@ KOJS.recipe.page.ListPage = (function () {
         });
         
         // リスト選択イベントの定義
-        $("#ls-recipes").on("tap", "a", function(e) {
+        $("#ls-recipes").on("click", "a", function(e) {
           var $a, 
               selectedRecipe, 
               selectedId;
@@ -166,7 +169,7 @@ KOJS.recipe.page.ListPage = (function () {
         });
         
         // 選択解除イベントの定義
-        $("#ls-selection").on("tap", "a", function(e) {
+        $("#ls-selection").on("click", "a", function(e) {
           var $a,
               unselectedRecipe, 
               unselectedId, 
@@ -190,7 +193,7 @@ KOJS.recipe.page.ListPage = (function () {
         });        
         
         // ページ遷移イベントの定義
-        $("#ls-navbar").on("tap", "a", function(e) {
+        $("#ls-navbar").on("click", "a", function(e) {
           e.preventDefault();
           if (context.selection.length > 0) {
             $.mobile.changePage("#detail-page", {changeHash: false});

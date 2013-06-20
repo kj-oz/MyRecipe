@@ -315,15 +315,16 @@ $(document).ready(function() {
       // （起動直後にはダミーページがロードされている）
       var count = context.repository.getCount();
       logger.log("* local recipe count = " + count);
-      if (count === 0) {
+      // 起動時には常にDropboxと同期するよう修正
+//      if (count === 0) {
         jobSync.always(function () {
           logger.log("* jobSync done");
           $.mobile.changePage(context.currentPage, {changeHash: false});
         });
-      } else {
-        logger.log("* direct change");
-        $.mobile.changePage(context.currentPage, {changeHash: false});
-      }
+//      } else {
+//        logger.log("* direct change");
+//        $.mobile.changePage(context.currentPage, {changeHash: false});
+//      }
     });
   };
 

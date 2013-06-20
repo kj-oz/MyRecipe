@@ -323,6 +323,7 @@ KOJS.recipe.model.Repository = (function () {
       
       // 編集したものの更新日をセット
       recipe.lastupdate = new Date().getTime();
+      recipe.dirty = true;
       if (!recipe._id) {
         // 新規追加レシピのランダム値を負の値に（先頭にくるように）
         self._newRecipeCount++;
@@ -343,10 +344,6 @@ KOJS.recipe.model.Repository = (function () {
         }, function () {
           // サーバーに保存できなければ、dirty=trueとし、追加時は仮のIDをつける
           logger.log("post recipe fail, set dirty.");
-          recipe.dirty = true;
-          if (!recipe._id) {
-            recipe._id = "LOC" + new Date().getTime();
-          }        
         }).then(function (data) {
           logger.log("checkwords done.");
           var i, n,
@@ -366,6 +363,9 @@ KOJS.recipe.model.Repository = (function () {
         logger.log("post recipe fail: " + error);
         return $.Deferred().resolve().promise();
       }).then(function () {
+        if (!recipe._id) {
+          recipe._id = "LOC" + new Date().getTime();
+        }        
         self._recipes[recipe._id] = recipe;
         self.saveRecipes();
       });
@@ -496,6 +496,8 @@ KOJS.recipe.model.Repository = (function () {
           }).always(function () {
             self.saveRecipes();
           });
+        }, function () {
+          self.saveRecipes();
         });
       }
     },

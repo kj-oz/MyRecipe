@@ -25,7 +25,7 @@ KOJS.recipe.page.DetailPage = (function () {
       $("#detail-page").on("pagebeforecreate", function (event) {
 
         // ナビゲーションのレシピ選択イベントの定義
-        $("#dt-navbar-recipes").on("tap", "div", function(e) {
+        $("#dt-navbar-recipes").on("click", "div", function(e) {
           var $div = $(e.target), index;
 
           if (!$div.hasClass("selected")) {
@@ -38,7 +38,7 @@ KOJS.recipe.page.DetailPage = (function () {
         });
 
         // ページ遷移イベントの定義
-        $("#dt-navbar").on("tap", "a", function(e) {
+        $("#dt-navbar").on("click", "a", function(e) {
           e.preventDefault();
           if (context.selection.length > 0) {
             $.mobile.changePage("#list-page", {changeHash: false, reverse: true});
@@ -46,7 +46,7 @@ KOJS.recipe.page.DetailPage = (function () {
         });
         
         // レシピ編集イベントの定義
-        $("#dt-btn-edit").on("tap", function (e) {
+        $("#dt-btn-edit").on("click", function (e) {
           context.startEditing(context.currentRecipe);
         });
       });
@@ -56,7 +56,7 @@ KOJS.recipe.page.DetailPage = (function () {
         var html, 
             currentRecipeIndex;
             
-        plugins.idleTimer.disable(1);
+        plugins.idleTimer.disable(120);
 
         context.setCurrentPage("#detail-page");
 
