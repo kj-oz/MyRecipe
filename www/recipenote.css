@@ -219,6 +219,10 @@ p, td {
   padding-bottom: 4px;
 }
 
+#ls-keyword {
+  padding-right: 0px;
+}
+
 #ls-recipes a.ui-link-inherit {
   padding-top: 0px;
   padding-bottom: 0px;

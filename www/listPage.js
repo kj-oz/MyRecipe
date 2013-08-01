@@ -141,6 +141,11 @@ KOJS.recipe.page.ListPage = (function () {
             context.saveCondition();
             self._initCondition();
             self._filterList(true);
+          } else {
+            $("#ls-keyword").get(0).value = "";
+            context.condition.keyword = "";
+            context.saveCondition();
+            self._filterList(true);
           }
         });
         

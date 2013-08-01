@@ -235,7 +235,7 @@ KOJS.recipe.page.EditPage = (function () {
        * 終了後 #Cookpadの下をクリア
        */
       this._loadFromCookpad = function () {
-        var text, 
+        var self = this, text, 
             recipe = context.editingRecipe;
         
         recipe.title = $("#recipe-title h1").text().trim();
@@ -249,7 +249,7 @@ KOJS.recipe.page.EditPage = (function () {
           var jq = $(elem);
           recipe.ingredients.push({
             name: jq.find(".ingredient_name").text().trim(),
-            quantity: jq.find(".ingredient_quantity").text().trim()
+            quantity: self._toHankaku(jq.find(".ingredient_quantity").text().trim())
           });
         });
                
@@ -294,15 +294,32 @@ KOJS.recipe.page.EditPage = (function () {
         $("#ed-source").val(recipe.source);
         $("#ed-link").val(recipe.link);
 
-        html = SNBinder.bind_rowset(templates["ed-steps"], 
-            SNBinder.transform_array(recipe.steps, 1));
+        // SNBinderで置換すると、改行コードが＜br/>に置き換えられてしまうため、
+        // 値はプログラム側で設定する
+        html = "";
+        for (i = 0, n = recipe.steps.length; i < n; i++) {
+          html += SNBinder.bind(templates["ed-steps"], {value:""})
+        }
         html += SNBinder.bind(templates["ed-steps"], {value:""})
         $("#ed-steps-table tbody").empty().html(html);
+        $("#ed-steps-table textarea").each(function (index, elem) {
+          if (index < n) {
+            $(elem).val(recipe.steps[index]);
+          }
+        });
+        
         $("#ed-steps-table textarea").textinput().keyup();
         $("#ed-steps-table button").button();
         
         $("#ed-advise").val(recipe.advise).keyup();  
       };
+      
+      this._toHankaku = function (sentence) {
+        return sentence.replace(/[０１２３４５６７８９]/g, function (num) {
+          var i = "０１２３４５６７８９".indexOf(num);
+          return (i !== -1) ? i : num;
+        });        
+      }
     }
   }
 
