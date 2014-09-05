@@ -240,7 +240,7 @@ KOJS.recipe.page.EditPage = (function () {
         
         recipe.title = $("#recipe-title h1").text().trim();
         $("#recipe_author_info_wrapper").remove();
-        recipe.description = $("#description").html().replace(/<br( \/)?>/g, "\n").trim();
+        recipe.description = $("#description .description_text").html().replace(/<br( \/)?>/g, "\n").trim();
         text = $("#ingredients .servings_for").text().trim();
         recipe.numPeople = text.substr(1, text.length - 2);
         

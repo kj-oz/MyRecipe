@@ -35,10 +35,11 @@
     [self writeJavascript:[result toSuccessCallbackString:callbackId]];
 }
 
+
 - (void)_enableIdleTimer
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(enableIdleTimer) object:nil];
+                                             selector:@selector(_enableIdleTimer) object:nil];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     NSLog(@"enableIdleTimer auto");

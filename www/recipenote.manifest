@@ -1,17 +1,24 @@
 CACHE MANIFEST
-#2013.08.01.01
+#2014.09.03.06
 
 CACHE:
+changePasswordPage.js
 detailPage.js
 editPage.js
 kojs.js
 listPage.js
+listPage2.js
+loginPage.js
+signupPage.js
 recipe.js
 recipenote.css
 recipenote.html
+recipenote2.html
 recipenote.js
+recipenote2.js
 recipenote.tmpl
 repository.js
+repository2.js
 idleTimer.js
 logger.js
 lib/images/ajax-loader.gif
@@ -26,7 +33,9 @@ lib/jquery.mobile-1.1.2.min.js
 lib/snbinder-0.5.3.js
 lib/cordova-2.5.0.js
 lib/dropbox.min.js
+lib/KiiSDK.js
 dao.js
+dao2.js
 
 NETWORK:
 /recipe

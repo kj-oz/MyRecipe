@@ -34,7 +34,7 @@
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
 
-    <content src="recipenote.html" />
+    <content src="recipenote2.html" />
 
     <plugins>
         <plugin name="Device" value="CDVDevice" />

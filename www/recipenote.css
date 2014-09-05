@@ -24,6 +24,15 @@ p, td {
   line-height: 1.5;
 }
 
+.ui-dialog-contain {
+  text-shadow: none;
+  color: black;
+}
+
+.ui-dialog-contain label {
+  color: lightgray;
+}
+
 #cookpad {
   display: none;
 }
