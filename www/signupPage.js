@@ -5,10 +5,6 @@ KOJS.namespace("recipe.page");
  */
 KOJS.recipe.page.SignupPage = (function () {
   var SignupPage = {
-    // 初期化済みフラグ
-    _initialized: false,
-        
-    _deferred: null,
     
     /**
      * サインアップページの初期化
@@ -47,7 +43,8 @@ KOJS.recipe.page.SignupPage = (function () {
                             "そのメールの内容に従って登録処理を完了して下さい。"
                   alert(msg);
                   
-                  context.sigbupped = true;
+                  context.signupped = true;
+                  
                   // 2重にダイアログを表示するとうまく閉じることが出来ないため、
                   // 直接ログインページに遷移
                   //$("#signup-page").dialog("close");

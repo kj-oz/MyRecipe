@@ -84,7 +84,6 @@ $(document).ready(function() {
         deferred.reject();
       } else if (token) {
         KiiUser.authenticateWithToken(token, {
-          // Called on successful registration
           success: function(user) {
             self.saveUser(user);
             logger.log("- kiiLogin: authenticated with token > getUploadedCount");
@@ -93,9 +92,7 @@ $(document).ready(function() {
               deferred.resolve();
             });
           },
-          // Called on a failed authentication
           failure: function(user, errorString) {
-            // Print some info to the log
             logger.log("- kiiLogin: error authenticating with token > showLogin");
             self.showLogin(deferred);
           }
@@ -108,6 +105,11 @@ $(document).ready(function() {
       return deferred.promise();
     },
     
+    /**
+     * ログインページを表示する.
+     *
+     * @param {Promise} 処理に対するPromiseオブジェクト
+     */
     showLogin: function (deferred) {
       var self = this;
       logger.log("- showLogin: start")
@@ -129,6 +131,12 @@ $(document).ready(function() {
       });
     },
     
+    /**
+     * アップロード済みのレシピ数を得る.
+     * 結果は、KiiUserオブジェクトの属性"uploadedCount"に保持する.
+     *
+     * @return {Promise} 処理に対するPromiseオブジェクト
+     */
     getUploadedCount: function () {
       var user = this._user,
           deferred = $.Deferred(),
@@ -232,7 +240,7 @@ $(document).ready(function() {
     },
 
     /**
-     * 選択レシピの保存
+     * ログイン情報の保存
      */
     saveUser: function (user) {
       this._user = user;
@@ -315,6 +323,11 @@ $(document).ready(function() {
       });
     },
     
+    /**
+     * KiiCloudへ初めて接続しているかの判定
+     * 
+     * @return {Boolean} recipe KiiCloudへ初めて接続しているユーザーか
+     */
     isFirstSync: function () {
       return this._user && !this._user.get("uploadedCount");
     }
@@ -354,7 +367,7 @@ $(document).ready(function() {
     }
     
     Kii.initializeWithSite("Your APP_ID",
-          "Your APP_Keys", KiiSite.JP);
+          "Your APP_AccessKey", KiiSite.JP);
     
     // 各ページのセットアップ
     KOJS.recipe.page.LoginPage.setup(context);
@@ -409,7 +422,6 @@ $(document).ready(function() {
       };
 
       // SNBinderのテンプレートの読み込み
-
       SNBinder.get_named_sections("recipenote.tmpl", null, function (templates) {
         context.templates = templates;
 

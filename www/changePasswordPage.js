@@ -1,29 +1,20 @@
 KOJS.namespace("recipe.page");
 
 /**
- * サインアップページに関する処理をまとめたオブジェクト
+ * パスワード変更ページに関する処理をまとめたオブジェクト
  */
 KOJS.recipe.page.ChangePasswordPage = (function () {
   var ChangePasswordPage = {
-    // 初期化済みフラグ
-    _initialized: false,
-        
-    _deferred: null,
-    
     /**
-     * サインアップページの初期化
+     * パスワード変更ページの初期化
      * 
      * @param {Context} context アプリケーション共有情報
      */
-    setup: function (context) {
-      if (this._initialized) {
-        return;
-      }
-      
+    setup: function (context) {      
       var self = this,
           logger = KOJS.util.Logger.get();
       
-      // サインアップページの初回表示時のイベントの定義
+      // パスワード変更ページの初回表示時のイベントの定義
       $("#changepassword-page").on("pagebeforecreate", function (event) {
         // 登録ボタン押下
         $("#cp-commit").on("click", function(e) {
@@ -54,7 +45,7 @@ KOJS.recipe.page.ChangePasswordPage = (function () {
                 }
               });
             } catch (e) {
-              msg = "" + e;
+              msg = "パスワードの変更に失敗しました。" + e;
               alert(msg);
             }
           }

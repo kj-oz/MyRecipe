@@ -30,7 +30,7 @@ KOJS.recipe.model.Dao = (function () {
     constructor: Dao,
     
     /**
-     * KiiCloudが認証済かどかを確認する
+     * 認証処理（接続時に認証済みなので、認証済かどうかをチェックする）
      * 
      * @return {Promise} 処理に対するPromiseオブジェクト
      */
@@ -71,12 +71,12 @@ KOJS.recipe.model.Dao = (function () {
               obj = resultSet[i];
               json = obj.get("recipe");
               json._id = obj.getUUID();
-              // Dropboxからの移行で順番がおかしくなってしまうのを防ぐ
+              // DropboxからKiiCloudへの移行時に順番がおかしくなってしまうのを防ぐため
+              // lastupdateの変更は取りやめ
               //json.lastupdate = obj.get("_modified");
               recipes.push(json);
             }
 
-            // if there are more results to be retrieved
             if (nextQuery != null) {
                 bucket.executeQuery(nextQuery, queryCallbacks);
             } else {
@@ -121,11 +121,10 @@ KOJS.recipe.model.Dao = (function () {
               dicts.push(json);
             }
 
-            // if there are more results to be retrieved
             if (nextQuery != null) {
                 bucket.executeQuery(nextQuery, queryCallbacks);
             } else {
-              logger.log("- loadRecipes resolve.");
+              logger.log("- loadDicts resolve.");
               jobDict.resolve(dicts);              
             }
         },
@@ -135,7 +134,7 @@ KOJS.recipe.model.Dao = (function () {
           jobDict.reject(errorString);
         }
       };
-      bucket.executeQuery(query, queryCallbacks);;
+      bucket.executeQuery(query, queryCallbacks);
       return jobDict.promise();
     },
     
@@ -200,12 +199,9 @@ KOJS.recipe.model.Dao = (function () {
      */
     postDict: function (ruby, words) {
       var deferred = $.Deferred(),
-//          postData,
           bucket,
           obj,
           id;
-      
-//      postData = {words:words};
       
       bucket = this._user.bucketWithName("dictionary");
       id = this.escapeRuby(ruby);
@@ -248,7 +244,7 @@ KOJS.recipe.model.Dao = (function () {
       var queryCallbacks = {
         success: function(queryPerformed, resultSet, nextQuery) {
           var json, obj;
-          logger.log("..getDict(" + ruby + ") done.　" + resultSet.length);
+          logger.log("..getDict(" + ruby + ") done." + resultSet.length);
           if (resultSet.length) {
             obj = resultSet[0];
             json = {words:obj.get("words"), ruby:ruby};
@@ -284,14 +280,23 @@ KOJS.recipe.model.Dao = (function () {
       return id.substring(0, 16);
     },
     
+    /**
+     * 読みがなをKiiCloudのIDとして使用できる文字列に変更する
+     * 
+     * @return {String} ID文字列
+     */
     escapeRuby: function (ruby) {
       return escape(ruby).replace(/%/g, ".");
     },
     
+    /**
+     * KiiCloudのID文字列から読みがなを復元する
+     * 
+     * @return {String} 読みがな
+     */
     unescapeRuby: function (id) {
       return unescape(id.replace(/\./g, "%"));
     }
-
   };
   
   return Dao;

@@ -11,10 +11,10 @@ KOJS.recipe.page.LoginPage = (function () {
     // ログイン失敗の通算回数
     _failureCount: 0,
     
-    _signUped: false, 
-    
+    // 表示時に初期化されるDeferredオブジェクト
     _deferred: null,
     
+    // 終了時の戻り先ページ（dialog.close()が適切に動作しないため）
     _fromPage: null,
     
     /**
@@ -96,6 +96,7 @@ KOJS.recipe.page.LoginPage = (function () {
                     "\n" +
                     "以上"
           if (confirm(msg)) {
+            context.signupped = false;
             $.mobile.changePage("#signup-page", {changeHash: false, role: "dialog"});
           }
         });
@@ -104,14 +105,14 @@ KOJS.recipe.page.LoginPage = (function () {
         $("#lg-resetpassword").on("click", function(e) {
           KiiUser.resetPassword($("#lg-mailaddress").val().trim(), {
             success: function(user) {
-              var msg = "登録されたメールアドレスにパスワード変更処理用のメールをお送りしました。" +
-                        "そのメールの内容に従って変更処理を完了して下さい。"
+              var msg = "登録されたメールアドレスにパスワードリセット処理用のメールをお送りしました。" +
+                        "そのメールの内容に従ってリセット処理を完了して下さい。"
               alert(msg);
             },
 
             failure: function(user, errorString) {
-              var msg = "パスワード変更手続きができませんでした。" +
-                        "しばらくしてから再度お試しください。"
+              var msg = "パスワードリセット手続きができませんでした。" +
+                        "メールアドレスが正しいことをご確認の上、再度お試しください。"
               alert(msg);
             }
           });
@@ -127,6 +128,13 @@ KOJS.recipe.page.LoginPage = (function () {
       });      
     },
     
+    /**
+     * ログインページの表示
+     * 
+     * @param {fromPage} 戻り先ページのID
+     * @return {Promise} 処理に対するPromiseオブジェクト
+     *  成功時のコールバックの引数は空
+     */
     show: function (fromPage) {
       var logger = KOJS.util.Logger.get();
       

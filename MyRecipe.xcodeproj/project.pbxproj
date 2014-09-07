@@ -438,7 +438,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MyRecipe/MyRecipe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = MyRecipe;
 				PROVISIONING_PROFILE = "fb2f6610-70b5-4941-8d9c-9ceb097afdc1";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -460,7 +460,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "MyRecipe/MyRecipe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = MyRecipe;
 				PROVISIONING_PROFILE = "24a75d3e-ffb0-4276-b4fe-0cb8571979a1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

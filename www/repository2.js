@@ -76,6 +76,12 @@ KOJS.recipe.model.Repository = (function () {
       logger.log("Repository.loadFromLocal done");
     },
     
+    /**
+     * 保存されているレシピ、辞書を全てサーバーへアップロードする.
+     * （KiiCloudへの初回接続時のみ実行）
+     * 
+     * @return {Promise} 処理に対するPromiseオブジェクト
+     */
     uploadAll: function () {
       var self = this,
           deferred = $.Deferred(),
@@ -676,12 +682,6 @@ KOJS.recipe.model.Repository = (function () {
       } catch (e) {
         alert("これ以上レシピを追加することが出来ません。不要なレシピを削除してください。")
       }   
-    },
-    
-    saveUser: function () {
-      var user = KiiUser.getCurrentUser();
-      localStorage["mailaddress"] = user.getEmailAddress();
-      localStorage["token"] = user.getAccessToken();
     },
     
     /**

@@ -37,7 +37,7 @@ MyRecipeは、料理のレシピを個人的に登録、閲覧するためのPho
 
 ###開発環境###
 
-* 2013/05/16現在、Mac 0S X 10.7.5（Lion）、Xcode 4.6.2
+* 2014/09/05現在、Mac 0S X 10.9.4、Xcode 5.1.1
 
 ###使用ライブラリ###
 
@@ -45,23 +45,26 @@ MyRecipeは、料理のレシピを個人的に登録、閲覧するためのPho
 * jQuery 1.8.3
 * jQuery Mobile 1.1.2
 * SNBinder 0.5.3
-* dropbox.js 0.9.2
+* KiiCloud SDK for JavaScript 2.1.19
 
+###使用クラウドサービス###
+
+* KiiCloud
 
 動作環境
 -----
 **iPad版**
 
-iOS 5.1以上、iPad専用
+iOS 6.0以上、iPad専用
 
-**Web版** （2013/05/18時点で動作確認済みのもの）
+**Web版** （2014/09/05時点で動作確認済みのもの）
 
 Mac
-* Safari（6.0.3）
-* Chrome（26.0.1410.65）
+* Safari（7.0.6）
+* Chrome（37.0）
 
 Windows
-* Chrome（26.0.1410.64m）
+* Chrome（37.0）
 
 ライセンス
 -----
@@ -71,6 +74,6 @@ Windows
 Copyright &copy; 2013 Kj Oz  
 
 [AppStore]: https://itunes.apple.com/us/app/reshipi-zhang/id641147266?l=ja&ls=1&mt=8
-[Heroku]: http://recipenote.herokuapp.com/recipenote.html
+[Heroku]: http://recipenote.herokuapp.com/recipenote2.html
 [Blogger]: http://recipe-cho.blogspot.jp
 [MIT]: http://www.opensource.org/licenses/mit-license.php
